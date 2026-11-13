@@ -4,17 +4,17 @@
   "hyprland_lua": "pass",
   "neovim_lua": "pass",
   "aether_highlight_contrast": {
-    "DiagnosticWarn": 8.83,
-    "DiagnosticInfo": 7.74,
-    "DiagnosticHint": 8.07,
-    "Normal": 15.78,
-    "Comment": 7.28,
-    "Visual": 8.96,
     "Search": 6.52,
     "IncSearch": 7.48,
     "DiffAdd": 9.11,
     "DiffDelete": 9.82,
     "DiffChange": 14.74,
-    "DiagnosticError": 8.65
+    "DiagnosticError": 8.65,
+    "DiagnosticWarn": 8.83,
+    "DiagnosticInfo": 7.74,
+    "DiagnosticHint": 8.07,
+    "Normal": 15.78,
+    "Comment": 7.28,
+    "Visual": 8.96
   }
 }

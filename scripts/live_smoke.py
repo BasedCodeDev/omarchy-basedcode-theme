@@ -10,10 +10,10 @@ def lua(code): run(['hyprctl','eval',code])
 monitors=json.loads(run(['hyprctl','-j','monitors']).stdout)
 centre=next(m for m in monitors if m['name']=='DP-1')
 focused=next(m for m in monitors if m['focused'])
-env=dict(os.environ,OMARCHY_THEME_SYNC_FROM='basedcode-light-local-validation',OMARCHY_THEME_WAIT='1')
+env=dict(os.environ,OMARCHY_THEME_SYNC_FROM='basedcode-local-validation',OMARCHY_THEME_WAIT='1')
 report={}; recording_started=False
 try:
-    lua('hl.dispatch(hl.dsp.focus({monitor="DP-1"})); hl.dispatch(hl.dsp.focus({workspace="name:basedcode-light-smoke"}))')
+    lua('hl.dispatch(hl.dsp.focus({monitor="DP-1"})); hl.dispatch(hl.dsp.focus({workspace="name:basedcode-smoke"}))')
     time.sleep(1)
     run(['grim','-o','DP-1',str(out/'final-desktop.png')])
     status=subprocess.run(['omarchy','capture','screenrecording','--status'],capture_output=True,text=True)
@@ -41,10 +41,10 @@ finally:
     if recording_started: subprocess.run(['omarchy','capture','screenrecording','--stop-recording'],env=env)
     lua('hl.dispatch(hl.dsp.focus({monitor="DP-1"})); hl.dispatch(hl.dsp.focus({workspace='+json.dumps(centre['activeWorkspace']['name'])+'}))')
     lua('hl.dispatch(hl.dsp.focus({monitor='+json.dumps(focused['name'])+'}))')
+run(['omarchy','theme','set','basedcode-dark'],env=env,timeout=60)
+assert (pathlib.Path.home()/'.local/state/omarchy/current/theme.name').read_text().strip()=='basedcode-dark'
 run(['omarchy','theme','set','basedcode'],env=env,timeout=60)
-assert (pathlib.Path.home()/'.local/state/omarchy/current/theme.name').read_text().strip()=='basedcode'
-run(['omarchy','theme','set','basedcode-light'],env=env,timeout=60)
-run(['omarchy','theme','bg','set',str(pathlib.Path.home()/'.config/omarchy/themes/basedcode-light/backgrounds/01-basedcode-light-motion.mp4')],env=env)
+run(['omarchy','theme','bg','set',str(pathlib.Path.home()/'.config/omarchy/themes/basedcode/backgrounds/01-basedcode-motion.mp4')],env=env)
 time.sleep(2)
 errors=run(['hyprctl','configerrors']).stdout.strip(); assert not errors,errors
 report['live_theme_round_trip']='pass'

@@ -1,4 +1,4 @@
-# BasedCode Light: brighter purple companion to the Carbon theme.
+# Basedcode: brighter purple companion to the Carbon theme.
 # Native dark mode gives third-party applications light text on dark surfaces.
 mode = "dark"
 accent = "#D7A4E2"

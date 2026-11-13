@@ -1,11 +1,11 @@
-# BasedCode Light for Omarchy
+# Basedcode for Omarchy
 
-A brighter purple companion to [BasedCode](https://github.com/BasedCodeDev/omarchy-basedcode-theme):
+A brighter purple companion to [Basedcode Dark](https://github.com/BasedCodeDev/omarchy-basedcode-dark-theme):
 charcoal working surfaces, white text and lilac focus accents, extending the approved
 purple gradient wallpaper through the desktop. The wallpaper contains no text or logos.
-“Light” names the brighter sibling; application appearance uses native dark mode.
+Basedcode is the purple variant; application appearance uses native dark mode.
 
-![BasedCode Light desktop preview: Neovim, btop, terminal and Files](preview.png)
+![Basedcode desktop preview: Neovim, btop, terminal and Files](preview.png)
 
 Built against Omarchy **4.5.0-3** and the [BasedCode Brand Bible v2.4](https://brand.basedcode.dev/).
 This repository retains the dark theme's Git ancestry and is maintained as a separate theme.
@@ -13,11 +13,11 @@ This repository retains the dark theme's Git ancestry and is maintained as a sep
 ## Install
 
 ```sh
-omarchy theme install https://github.com/BasedCodeDev/omarchy-basedcode-light-theme
+omarchy theme install https://github.com/BasedCodeDev/omarchy-basedcode-theme
 ```
 
-Omarchy installs and activates `basedcode-light`. Its installer replaces an existing theme
-with that name: back up local changes first. The dark `basedcode` theme remains separate.
+Omarchy installs and activates `basedcode`. Its installer replaces an existing theme
+with that name: back up local changes first. The dark `basedcode-dark` theme remains separate.
 Requires Omarchy's native theme generator and video-wallpaper support, plus Yaru-purple icons.
 JetBrainsMono Nerd Font is recommended; fonts and icons are not bundled or installed.
 Native dark mode selects Adwaita-dark for applications without a custom palette.
@@ -29,7 +29,7 @@ python scripts/install.py --apply
 ```
 
 This saves the current theme, wallpaper and appearance settings under
-`~/.local/state/omarchy/basedcode-light-backups/`, printing the exact backup directory.
+`~/.local/state/omarchy/basedcode-backups/`, printing the exact backup directory.
 It suppresses theme mirroring to other machines for that invocation. It preserves user
 fonts, sizes, layouts, keybindings, monitor settings and transparency preferences.
 
@@ -38,8 +38,8 @@ fonts, sizes, layouts, keybindings, monitor settings and transparency preference
 Choose motion or still in the background picker, or run:
 
 ```sh
-omarchy theme bg set ~/.config/omarchy/themes/basedcode-light/backgrounds/02-basedcode-light-still.png
-omarchy theme bg set ~/.config/omarchy/themes/basedcode-light/backgrounds/01-basedcode-light-motion.mp4
+omarchy theme bg set ~/.config/omarchy/themes/basedcode/backgrounds/02-basedcode-still.png
+omarchy theme bg set ~/.config/omarchy/themes/basedcode/backgrounds/01-basedcode-motion.mp4
 ```
 
 The motion version is a silent 1920×1080, 30 fps, 16-second loop with a 4K still. Selecting the still stops video
@@ -48,13 +48,13 @@ playback; no additional wallpaper service is installed. Native lock-screen blur 
 To switch to the dark sibling, if installed:
 
 ```sh
-omarchy theme set basedcode
+omarchy theme set basedcode-dark
 ```
 
 To restore the exact appearance saved by the backup-aware installer:
 
 ```sh
-python scripts/rollback.py ~/.local/state/omarchy/basedcode-light-backups/TIMESTAMP
+python scripts/rollback.py ~/.local/state/omarchy/basedcode-backups/TIMESTAMP
 ```
 
 Use the timestamp printed during installation. The new light theme remains available.
@@ -120,3 +120,20 @@ terminal directory listing, and GNOME Files. Both variants use the same layout
 and sample files. btop shows loopback networking instead of a private network
 address, with the process list hidden. Fonts and monitor scaling are unchanged.
 Files uses the native dark GTK appearance with Yaru-purple icons.
+
+## Theme naming migration
+
+The purple variant previously called **BasedCode Light** is now **Basedcode**
+(`basedcode`, `BasedCodeDev/omarchy-basedcode-theme`). The grey variant previously
+called **BasedCode** is now **Basedcode Dark** (`basedcode-dark`,
+`BasedCodeDev/omarchy-basedcode-dark-theme`). Appearance and screenshots are unchanged.
+
+The old unsuffixed GitHub URL now identifies the purple variant. Existing dark-theme
+users must update their remote to `https://github.com/BasedCodeDev/omarchy-basedcode-dark-theme.git`.
+Install the renamed dark variant before installing the purple variant to avoid replacing
+an existing `basedcode` installation. Back up local changes and custom wallpapers first.
+Use the new URLs explicitly: redirects do not change the theme slug derived from an old URL.
+
+Historical rollback records remain untouched. The updated rollback script maps pre-rename
+`basedcode` records to `basedcode-dark` and `basedcode-light` records to `basedcode`.
+New records include versioned identity metadata and use the current names.

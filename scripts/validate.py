@@ -30,7 +30,7 @@ def main():
     for bg in ('dark_background','darker_background'):
         for fg in ('foreground','light_foreground','muted'):
             check(bg+' '+fg,c[fg],c[bg])
-    with tempfile.TemporaryDirectory(prefix='basedcode-light-validation-') as temp:
+    with tempfile.TemporaryDirectory(prefix='basedcode-validation-') as temp:
         isolated=pathlib.Path(temp)
         stage=isolated/'.local/state/omarchy/current/next-theme'
         stage.mkdir(parents=True)
@@ -84,7 +84,7 @@ def main():
         destination=ROOT/'build/generated'
         if destination.exists(): shutil.rmtree(destination)
         shutil.copytree(stage,destination)
-    media=ROOT/'theme/backgrounds/01-basedcode-light-motion.mp4'
+    media=ROOT/'theme/backgrounds/01-basedcode-motion.mp4'
     video=None
     if media.exists():
         video=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(media)],text=True))

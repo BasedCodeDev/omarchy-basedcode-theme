@@ -24,9 +24,9 @@ def display_state():
     return [{k:m[k] for k in ('name','width','height','scale','transform','refreshRate')} for m in monitors]
 initial_displays=display_state()
 def still_our_theme():
-    return (pathlib.Path.home()/'.local/state/omarchy/current/theme.name').read_text().strip()=='basedcode-light'
+    return (pathlib.Path.home()/'.local/state/omarchy/current/theme.name').read_text().strip()=='basedcode'
 try:
-    for label,filename in [('still','02-basedcode-light-still.png'),('motion','01-basedcode-light-motion.mp4')]:
+    for label,filename in [('still','02-basedcode-still.png'),('motion','01-basedcode-motion.mp4')]:
         subprocess.run(['omarchy','theme','bg','set',str(media/filename)],check=True)
         time.sleep(5)
         previous=proc_sample(); start=time.monotonic(); samples=[]
@@ -45,7 +45,7 @@ try:
             'mean_process_rss_mib':statistics.mean(x['process_rss_mib'] for x in samples)}
         (OUT/'benchmark.json').write_text(json.dumps(all_results,indent=2)+'\n')
 finally:
-    if still_our_theme(): subprocess.run(['omarchy','theme','bg','set',str(media/'01-basedcode-light-motion.mp4')],check=False)
+    if still_our_theme(): subprocess.run(['omarchy','theme','bg','set',str(media/'01-basedcode-motion.mp4')],check=False)
 print('Observational benchmark complete; animated background restored',flush=True)
 summary={'note':'Observational samples; other desktop applications contribute to GPU totals.',
          'displays_unchanged':all(v['display_state']==initial_displays for v in all_results.values()),'modes':{}}

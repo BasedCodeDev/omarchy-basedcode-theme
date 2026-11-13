@@ -11,7 +11,7 @@ c=np.asarray(render.frame(2,640,360),dtype=np.float32)
 period=float(np.abs(a-b).max()); change=float(np.abs(a-c).mean())
 assert period<=1,period
 assert change>.01,change  # Approved subtle lighting, not the rejected moving ribbons.
-media=ROOT/'theme/backgrounds/01-basedcode-light-motion.mp4'
+media=ROOT/'theme/backgrounds/01-basedcode-motion.mp4'
 last=render.FPS*render.DURATION-1
 raw=subprocess.check_output(['ffmpeg','-v','error','-i',str(media),'-vf',f"select='eq(n,0)+eq(n,1)+eq(n,{last-1})+eq(n,{last})',scale=640:360",'-fps_mode','passthrough','-f','rawvideo','-pix_fmt','rgb24','pipe:1'])
 frames=np.frombuffer(raw,dtype=np.uint8).reshape(4,360,640,3).astype(np.float32)

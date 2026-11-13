@@ -3,13 +3,13 @@
 import json, os, pathlib, shutil, subprocess, tempfile, tomllib
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 c=tomllib.loads((ROOT/'theme/colors.toml').read_text())
-with tempfile.TemporaryDirectory(prefix='basedcode-light-editor-') as temp:
+with tempfile.TemporaryDirectory(prefix='basedcode-editor-') as temp:
     stage=pathlib.Path(temp)/'.local/state/omarchy/current/next-theme'
     stage.mkdir(parents=True)
     shutil.copy2(ROOT/'theme/colors.toml',stage/'colors.toml')
     subprocess.run(['/usr/share/omarchy/bin/omarchy-theme-set-templates'],env=dict(os.environ,HOME=temp,XDG_STATE_HOME=temp+'/.local/state',OMARCHY_PATH='/usr/share/omarchy'),check=True)
     theme=json.loads((stage/'vscode-theme.json').read_text())
-theme['name']='BasedCode Light'
+theme['name']='Basedcode'
 colors=theme['colors']
 for key in ('focusBorder','list.focusOutline','settings.focusedRowBorder','menu.selectionBorder','menubar.selectionBorder'):
     colors[key]=c['accent']

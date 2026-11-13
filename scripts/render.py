@@ -34,14 +34,14 @@ def frame(t,w=1920,h=1080):
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--video',action='store_true');ap.add_argument('--width',type=int,default=CFG['width']);ap.add_argument('--height',type=int,default=CFG['height']);args=ap.parse_args()
     out=ROOT/'theme/backgrounds';out.mkdir(exist_ok=True);qa=ROOT/'qa';qa.mkdir(exist_ok=True)
-    still=frame(0,CFG['still_width'],CFG['still_height']);still.save(out/'02-basedcode-light-still.png')
+    still=frame(0,CFG['still_width'],CFG['still_height']);still.save(out/'02-basedcode-still.png')
     frame(0,1280,720).save(qa/'wallpaper-review.png')
     ImageOps.fit(still,(608,1080)).save(qa/'portrait-review.png')
     sheet=Image.new('RGB',(1920,720))
     for i,t in enumerate((0,2,4,8,12,15)):sheet.paste(frame(t,640,360),((i%3)*640,(i//3)*360))
     sheet.save(qa/'motion-contact-sheet.png')
     if args.video:
-        proc=subprocess.Popen(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','rawvideo','-pix_fmt','rgb24','-s',f'{args.width}x{args.height}','-r',str(FPS),'-i','pipe:0','-an','-c:v','libx264','-preset','fast','-crf','18','-pix_fmt','yuv420p','-movflags','+faststart','-threads','4',str(out/'01-basedcode-light-motion.mp4')],stdin=subprocess.PIPE)
+        proc=subprocess.Popen(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','rawvideo','-pix_fmt','rgb24','-s',f'{args.width}x{args.height}','-r',str(FPS),'-i','pipe:0','-an','-c:v','libx264','-preset','fast','-crf','18','-pix_fmt','yuv420p','-movflags','+faststart','-threads','4',str(out/'01-basedcode-motion.mp4')],stdin=subprocess.PIPE)
         try:
             for i in range(FPS*DURATION):
                 proc.stdin.write(frame(i/FPS,args.width,args.height).tobytes())

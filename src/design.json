@@ -1,5 +1,5 @@
 {
-  "name": "BasedCode Light",
+  "name": "Basedcode",
   "brand_source": "https://brand.basedcode.dev/",
   "brand_version": "2.4",
   "official": {
@@ -30,5 +30,5 @@
     "end_stop": 1
   },
   "font_family": "JetBrains Mono",
-  "notes": "Approved purple field from nodes.html CSS, without its shader, nodes or text. Medium-purple application surfaces and light text follow selected mockup C. Light denotes the brighter purple sibling, not light application mode. Wallpaper revised to match the supplied streaming-scene screenshot: softer plum left, warmer luminous purple right; screenshot is a visual reference, not bundled artwork. Main window background subsequently matched to the reference top bar: #1F241F, with charcoal panels and purple accents. Right-hand wallpaper highlight reduced from #995DA5 to #895395 following desktop review."
+  "notes": "Basedcode: purple scene-matched gradient with charcoal working surfaces and lilac focus. Formerly BasedCode Light. The wallpaper has no shader, nodes or text. Native dark application mode is intentional."
 }

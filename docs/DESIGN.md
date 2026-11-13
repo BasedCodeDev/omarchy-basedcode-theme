@@ -1,8 +1,7 @@
-# BasedCode Light design
+# Basedcode design
 
 The approved direction extends the purple field from the supplied nodes.html background
-into charcoal windows with light text, sampled from the supplied scene’s top bar. The name identifies the brighter
-sibling of the Carbon theme; this is deliberately a native dark-mode application palette.
+into charcoal windows with light text, sampled from the supplied scene’s top bar. This is the purple variant, paired with Basedcode Dark; both use native dark-mode application palettes.
 
 | Role | Colour |
 |---|---|

@@ -2,9 +2,9 @@
 """Test Git-installed staging, native switching and remembered still choice offline."""
 import hashlib,json,os,pathlib,shutil,subprocess,tempfile,tomllib,sys
 ROOT=pathlib.Path(__file__).resolve().parents[1]
-with tempfile.TemporaryDirectory(prefix='basedcode-light-staging-') as tmp:
+with tempfile.TemporaryDirectory(prefix='basedcode-staging-') as tmp:
     isolated=pathlib.Path(tmp)
-    target=isolated/'.config/omarchy/themes/basedcode-light'
+    target=isolated/'.config/omarchy/themes/basedcode'
     if '--repository-root' in sys.argv:
         # Exercise exactly the tracked installable repository, excluding local QA.
         files=subprocess.check_output(['git','-C',str(ROOT),'ls-files','-z']).decode().split('\0')
@@ -19,22 +19,22 @@ with tempfile.TemporaryDirectory(prefix='basedcode-light-staging-') as tmp:
         result=subprocess.run(['omarchy','theme','set',name],env=env,capture_output=True,text=True)
         assert result.returncode==0,result.stderr
         return result.stderr
-    stderr=select('basedcode-light')
+    stderr=select('basedcode')
     current=isolated/'.local/state/omarchy/current'
-    assert (current/'background').resolve().name=='01-basedcode-light-motion.mp4'
+    assert (current/'background').resolve().name=='01-basedcode-motion.mp4'
     assert (current/'theme/vscode-theme.json').read_bytes()==(target/'vscode-theme.json').read_bytes()
     assert tomllib.loads((current/'theme/shell.toml').read_text())['bar']['active']=='#D7A4E2'
     assert (current/'theme/neovim.lua').exists()
     assert (current/'theme/foot.ini').exists()
     (current/'background').unlink()
-    (current/'background').symlink_to(current/'theme/backgrounds/02-basedcode-light-still.png')
+    (current/'background').symlink_to(current/'theme/backgrounds/02-basedcode-still.png')
     # Use a copy of the installed dark sibling in this isolated home.
-    dark=pathlib.Path.home()/'.config/omarchy/themes/basedcode'
-    shutil.copytree(dark,isolated/'.config/omarchy/themes/basedcode')
+    dark=pathlib.Path.home()/'.config/omarchy/themes/basedcode-dark'
+    shutil.copytree(dark,isolated/'.config/omarchy/themes/basedcode-dark')
+    select('basedcode-dark')
+    assert (current/'theme.name').read_text().strip()=='basedcode-dark'
     select('basedcode')
-    assert (current/'theme.name').read_text().strip()=='basedcode'
-    select('basedcode-light')
-    assert (current/'background').resolve().name=='02-basedcode-light-still.png'
+    assert (current/'background').resolve().name=='02-basedcode-still.png'
     assert (current/'background').exists()
     assert (current/'theme/colors.toml').read_bytes()==(ROOT/'theme/colors.toml').read_bytes()
     report={'git_staging':'pass','native_generated_terminal_and_neovim':'pass','vscode_override_preserved':'pass','theme_round_trip':'pass','remembered_still_choice':'pass','staging_stderr':stderr.strip()}
