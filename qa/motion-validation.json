@@ -1,6 +1,6 @@
 {
-  "periodic_max_channel_delta": 1.0,
-  "two_second_mean_channel_delta": 2.9895920753479004,
-  "encoded_seam_mean_delta": 0.32337239384651184,
-  "encoded_adjacent_mean_delta": 0.0940205454826355
+  "periodic_max_channel_delta": 0.0,
+  "two_second_mean_channel_delta": 0.1922728568315506,
+  "encoded_seam_mean_delta": 0.17900897562503815,
+  "encoded_adjacent_mean_delta": 0.01751880720257759
 }

@@ -1,0 +1,166 @@
+{
+  "minimum": 5.29,
+  "samples": [
+    {
+      "seconds": 0,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.5
+    },
+    {
+      "seconds": 0,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 1,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.42
+    },
+    {
+      "seconds": 1,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 2,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.3
+    },
+    {
+      "seconds": 2,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 3,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.29
+    },
+    {
+      "seconds": 3,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 4,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.29
+    },
+    {
+      "seconds": 4,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 5,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.3
+    },
+    {
+      "seconds": 5,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 6,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.37
+    },
+    {
+      "seconds": 6,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 7,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.44
+    },
+    {
+      "seconds": 7,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 8,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.53
+    },
+    {
+      "seconds": 8,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 9,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.63
+    },
+    {
+      "seconds": 9,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 10,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.7
+    },
+    {
+      "seconds": 10,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 11,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.79
+    },
+    {
+      "seconds": 11,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 12,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.79
+    },
+    {
+      "seconds": 12,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 13,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.74
+    },
+    {
+      "seconds": 13,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 14,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.7
+    },
+    {
+      "seconds": 14,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    },
+    {
+      "seconds": 15,
+      "crop": "landscape",
+      "minimum_bar_text_contrast": 5.58
+    },
+    {
+      "seconds": 15,
+      "crop": "portrait",
+      "minimum_bar_text_contrast": 8.52
+    }
+  ],
+  "note": "Computed from source frames and centre-fill crops; native bar colour selection is tested separately."
+}

@@ -1,96 +1,80 @@
-# BasedCode for Omarchy
+# BasedCode Light for Omarchy
 
-A quiet dark theme for building things: Carbon working surfaces, layered purple panels,
-white text, clear focus indicators, and a slowly travelling purple wallpaper.
+A brighter purple companion to [BasedCode](https://github.com/BasedCodeDev/omarchy-basedcode-theme):
+charcoal working surfaces, white text and lilac focus accents, extending the approved
+purple gradient wallpaper through the desktop. The wallpaper contains no text or logos.
+“Light” names the brighter sibling; application appearance uses native dark mode.
 
-![Text-free wallpaper preview](theme/preview.png)
+![BasedCode Light desktop preview: Neovim, btop, terminal and Files](preview.png)
 
-Built against **Omarchy 4.5.0-3** and [BasedCode Brand Bible v2.4](https://brand.basedcode.dev/).
-The theme preserves the user's layout, shortcuts, font sizes, monitor settings, and opacity preferences.
+Built against Omarchy **4.5.0-3** and the [BasedCode Brand Bible v2.4](https://brand.basedcode.dev/).
+This repository retains the dark theme's Git ancestry and is maintained as a separate theme.
 
-## Install from GitHub
+## Install
 
 ```sh
-omarchy theme install https://github.com/BasedCodeDev/omarchy-basedcode-theme
+omarchy theme install https://github.com/BasedCodeDev/omarchy-basedcode-light-theme
 ```
 
-Omarchy installs and activates the theme as `basedcode`. Its installer replaces an existing
-theme with that name, so back up any local changes first. To use the bundled backup-aware
-installer instead, clone this repository and follow the source installation below.
+Omarchy installs and activates `basedcode-light`. Its installer replaces an existing theme
+with that name: back up local changes first. The dark `basedcode` theme remains separate.
+Requires Omarchy's native theme generator and video-wallpaper support, plus Yaru-purple icons.
+JetBrainsMono Nerd Font is recommended; fonts and icons are not bundled or installed.
+Native dark mode selects Adwaita-dark for applications without a custom palette.
 
-## Install from this source project
-
-Run as your ordinary desktop user, not root:
+For a backup-aware installation from a local clone, run as your normal desktop user:
 
 ```sh
 python scripts/install.py --apply
 ```
 
-This copies `theme/` into `~/.config/omarchy/themes/basedcode`, records the previous theme,
-saves the selected wallpaper, and activates BasedCode. If BasedCode already exists, it is
-moved into the timestamped backup first. Backups live in
-`~/.local/state/omarchy/basedcode-backups/`; the installer prints the exact location.
-The installer suppresses theme mirroring to other machines for this invocation.
+This saves the current theme, wallpaper and appearance settings under
+`~/.local/state/omarchy/basedcode-light-backups/`, printing the exact backup directory.
+It suppresses theme mirroring to other machines for that invocation. It preserves user
+fonts, sizes, layouts, keybindings, monitor settings and transparency preferences.
 
-Dependencies for using the theme: Omarchy's shell and native theme generator, video-wallpaper
-support for animation, **Yaru-purple** icons, and **JetBrainsMono Nerd Font** (recommended).
-Fonts and icons are not bundled or installed automatically. Omarchy selects its regular
-Adwaita dark application mode; this is not a replacement GTK widget theme.
+## Wallpaper and rollback
 
-## Motion controls
-
-The first wallpaper is a silent 12-second, 30 fps loop. The second is its matching still.
-Choose either in Omarchy's background picker, or use:
+Choose motion or still in the background picker, or run:
 
 ```sh
-# Stop wallpaper motion by selecting the still:
-omarchy theme bg set ~/.config/omarchy/themes/basedcode/backgrounds/02-basedcode-still.png
-
-# Restore the animation:
-omarchy theme bg set ~/.config/omarchy/themes/basedcode/backgrounds/01-basedcode-motion.mp4
+omarchy theme bg set ~/.config/omarchy/themes/basedcode-light/backgrounds/02-basedcode-light-still.png
+omarchy theme bg set ~/.config/omarchy/themes/basedcode-light/backgrounds/01-basedcode-light-motion.mp4
 ```
 
-This is a still-image choice, not a frozen frame from a paused decoder. There is no custom
-wallpaper service or shell animation plugin. Omarchy's lock screen uses its own video poster
-and blur treatment. Both wallpapers are text-free.
+The motion version is a silent 1920×1080, 30 fps, 16-second loop with a 4K still. Selecting the still stops video
+playback; no additional wallpaper service is installed. Native lock-screen blur is retained.
 
-## Switch back
-
-Use the normal theme picker or `omarchy theme set vantablack`. To restore the exact saved
-wallpaper and previous desktop appearance settings as well:
+To switch to the dark sibling, if installed:
 
 ```sh
-python scripts/rollback.py ~/.local/state/omarchy/basedcode-backups/TIMESTAMP
+omarchy theme set basedcode
 ```
 
-Replace `TIMESTAMP` with the installer's printed backup directory. This restores the prior
-active theme and wallpaper; it leaves the newly installed BasedCode package available.
-A pre-existing BasedCode directory is preserved as `previous-basedcode` in the backup.
-If that was the previously active theme, rollback restores that package before selecting it.
+To restore the exact appearance saved by the backup-aware installer:
 
-## Design and application coverage
+```sh
+python scripts/rollback.py ~/.local/state/omarchy/basedcode-light-backups/TIMESTAMP
+```
 
-- Official colours: Carbon `#121014`, Plum `#1D0A25`, Deep `#2D1540`, Core `#472458`,
-  Violet `#83478F`, Lumen `#B568C2`, and white.
-- Secondary text comes from the guide's `#D7C9DD` and `#A995B2` tokens.
-- Terminal errors, warnings, successes, syntax and diffs use restrained functional colours.
-  These additions are documented exceptions, not new BasedCode brand colours.
-- Carbon remains the coding surface. Deep is used for menus and popups; Core for selections.
-- Solid Lumen borders identify keyboard focus. White selected text avoids low-contrast purple-on-purple labels.
-- The user's transparent bar remains transparent; an opaque bar uses Carbon.
-- Omarchy generates Foot, Ghostty, Kitty, Alacritty, Aether/Neovim, Helix, btop and other
-  integrations from the palette. Only supported, installed applications are actually refreshed.
-- The colour-only `vscode-theme.json` corrects low-contrast secondary buttons and focus indicators
-  in the stock template. It retains native syntax mappings and does not request an extension download.
-- User application customisations take precedence. For example, existing Neovim transparency
-  customisations can remove backgrounds independently of this theme.
+Use the timestamp printed during installation. The new light theme remains available.
 
-See [validation](docs/VALIDATION.md) for the distinction between live, parser, and generated-config tests.
+## Design and coverage
 
-## Rebuild
+The approved reference supplies a rich purple field. Working surfaces use `#1F241F`,
+panels `#272D27`, sidebars `#191D19`, white primary text and `#C1A7CE` muted text.
+Lilac `#D7A4E2` marks focus; selections use white on `#663674`. Semantic colours
+preserve readable code, errors, warnings and diffs.
 
-Use Python 3.11+ with pinned dependencies, FFmpeg with libx264, Fontconfig, an installed
-JetBrains Mono font, and the tested Omarchy templates:
+Omarchy generates terminal, Aether/Neovim, Helix, btop and other integrations from the palette.
+The colour-only VS Code override retains native syntax mapping while fixing button and focus
+contrast. User application overrides still take precedence, including Neovim transparency.
+See [design decisions](docs/DESIGN.md) and [validation evidence and limits](docs/VALIDATION.md).
+
+## Rebuild and contribute
+
+Use Python 3.11+, the pinned dependencies, FFmpeg with libx264, and the tested Omarchy
+installation. Review-sheet rendering also needs Fontconfig and JetBrains Mono.
 
 ```sh
 python -m venv .venv
@@ -101,39 +85,38 @@ python -m venv .venv
 .venv/bin/python scripts/review.py
 .venv/bin/python scripts/validate.py
 .venv/bin/python scripts/check_motion.py
+.venv/bin/python scripts/check_wallpaper.py
 .venv/bin/python scripts/check_apps.py
 .venv/bin/python scripts/check_staging.py
 .venv/bin/python scripts/package.py
 ```
 
-The normal render is 3840×2160. A lower-cost animation can be generated with
-`scripts/render.py --video --width 2560 --height 1440`; the still remains 4K.
-The wallpaper renderer is deterministic for the same dependencies and encoder. Different
-FFmpeg versions may change compressed bytes; `qa/build-info.json` records the build inputs.
+The staging check uses the installed dark sibling for its isolated round trip. It does not
+switch the live desktop. `scripts/live_smoke.py` and `scripts/benchmark.py` are opt-in live
+checks: they temporarily switch workspaces/themes or wallpapers and should be run knowingly.
+The smoke check targets the development workstation's DP-1 display; adapt that selector
+before running it on another machine. No live checks run during ordinary installation.
 
-`src/design.json` defines the brand references and motion geometry; `theme/colors.toml` defines
-application tokens. Shell and editor overrides are rebuilt from scripts. The wallpaper has
-no external photographs or generated raster dependencies. Font files are not redistributed.
+`theme/` is the source of runtime files. `src/design.json` records brand and motion decisions.
+The package script synchronises runtime files to the repository root for direct Git
+installation; commit both copies. Git deduplicates identical contents. It also builds runtime
+and source archives with SHA-256 checksums in `dist/`. Private captures, rollback records,
+build caches, virtual environments and archives are excluded from Git and public packages.
 
-## Distribution
+Render with `--width 2560 --height 1440 --video` for a larger animation; the still remains 4K.
+Build inputs and validation results are in `qa/`. Reproducibility assumes matching dependencies
+and encoder versions. Screenshots must be reviewed before including them in a public package.
 
-`scripts/package.py` produces a runtime archive and a separate source archive in `dist/`,
-plus SHA-256 checksums. The runtime archive has `basedcode/colors.toml` at its root folder,
-so it can be extracted into `~/.config/omarchy/themes/` on another compatible installation.
-Do not overwrite an existing theme directory without backing it up.
+## Rights
 
-The repository root is directly installable with `omarchy theme install`. The `theme/`
-directory is the editable source of the runtime files; `scripts/package.py` also synchronises
-those files to the repository root. After editing or rebuilding assets, run that script and
-commit both copies. Git stores identical file contents only once. Build caches, archives,
-private screenshots and local rollback records are ignored.
+Original code and procedural artwork are MIT-licensed; see [LICENSE](LICENSE).
+BasedCode brand rights remain separate. See [brand rights](BRAND-RIGHTS.md) and
+[third-party notices](THIRD-PARTY-NOTICES.md).
 
-The runtime package contains no executable Lua or terminal configuration overrides. It is
-compatible with Omarchy's Git-installed theme staging rules. Personal screenshots, rollback
-records, and raw workstation measurements under `qa/local/` are excluded from both archives.
+## Desktop preview
 
-## Rights and attribution
-
-Original implementation code and unbranded procedural artwork are MIT-licensed; see `LICENSE`.
-BasedCode names and wordmarks remain the rights of their owner. The code licence grants no
-trademark rights or implied endorsement. See `BRAND-RIGHTS.md` and `THIRD-PARTY-NOTICES.md`.
+The preview is a real 2560×1440 capture with Neovim and its file tree, btop, a
+terminal directory listing, and GNOME Files. Both variants use the same layout
+and sample files. btop shows loopback networking instead of a private network
+address, with the process list hidden. Fonts and monitor scaling are unchanged.
+Files uses the native dark GTK appearance with Yaru-purple icons.

@@ -27,7 +27,10 @@ def main():
     check('panel secondary',c['light_foreground'],c['lighter_background'])
     check('panel muted',c['muted'],c['lighter_background'])
     check('lock placeholder',c['muted'],c['background'])
-    with tempfile.TemporaryDirectory(prefix='basedcode-validation-') as temp:
+    for bg in ('dark_background','darker_background'):
+        for fg in ('foreground','light_foreground','muted'):
+            check(bg+' '+fg,c[fg],c[bg])
+    with tempfile.TemporaryDirectory(prefix='basedcode-light-validation-') as temp:
         isolated=pathlib.Path(temp)
         stage=isolated/'.local/state/omarchy/current/next-theme'
         stage.mkdir(parents=True)
@@ -48,18 +51,20 @@ def main():
             if file.suffix=='.json': json.loads(text)
             if file.name=='foot.ini':
                 parser=configparser.ConfigParser(); parser.read_string(text)
-                assert parser['colors-dark']['foreground']=='FFFFFF'
+                assert parser['colors-dark']['foreground'].upper()==c['foreground'][1:]
             generated.append(file.name)
         shell=tomllib.loads((stage/'shell.toml').read_text())
         assert shell['bar']['active']==c['accent']
         assert shell['lock']['placeholder']==c['muted']
-        assert shell['menu']['selected-text']==c['foreground']
+        assert shell['menu']['selected-text']==c['selection_foreground']
         assert shell['menu']['selected-background']==c['selection']
         assert shell['font']['base-size']==12
         for name in ('launcher','menu','notifications','popups','tooltip','polkit','lock'):
             section=shell[name]; check(name+' text',section['text'],section['background'])
             check(name+' border',section['border'],section['background'],3)
-        vc=json.loads((stage/'vscode-theme.json').read_text())['colors']
+        editor=json.loads((stage/'vscode-theme.json').read_text())
+        assert editor['type']==c['mode']
+        vc=editor['colors']
         for label,fg,bg in [('primary button','button.foreground','button.background'),('secondary button','button.secondaryForeground','button.secondaryBackground'),('secondary hover','button.secondaryForeground','button.secondaryHoverBackground'),('extension button','extensionButton.foreground','extensionButton.background'),('editor selection','editor.selectionForeground','editor.selectionBackground'),('terminal selection','terminal.selectionForeground','terminal.selectionBackground')]:
             check(label,vc[fg],vc[bg])
         check('editor keyboard focus',vc['focusBorder'],c['background'],3)
@@ -68,10 +73,18 @@ def main():
             return '#'+''.join(f'{round(int(fg[i:i+2],16)*alpha+int(bg[i:i+2],16)*(1-alpha)):02x}' for i in (1,3,5))
         for key in ('diffEditor.insertedTextBackground','diffEditor.removedTextBackground','editor.findMatchBackground'):
             check(key,c['foreground'],composite(vc[key],c['background']))
+        controls=shell['controls']
+        for state in ('normal','hover-cursor','focus','selected'):
+            fill=controls[state+'-color']+f"{round(controls[state+'-fill-alpha']*255):02x}"
+            bg=composite(fill,c['lighter_background'])
+            check('control '+state+' text',c['foreground'],bg)
+            check('control '+state+' border',controls[state+'-border'],bg,3)
+        for label,fg,bg in [('primary hover','button.foreground','button.hoverBackground'),('extension hover','extensionButton.foreground','extensionButton.hoverBackground'),('prominent hover','extensionButton.prominentForeground','extensionButton.prominentHoverBackground')]:
+            check(label,vc[fg],vc[bg])
         destination=ROOT/'build/generated'
         if destination.exists(): shutil.rmtree(destination)
         shutil.copytree(stage,destination)
-    media=ROOT/'theme/backgrounds/01-basedcode-motion.mp4'
+    media=ROOT/'theme/backgrounds/01-basedcode-light-motion.mp4'
     video=None
     if media.exists():
         video=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(media)],text=True))
@@ -79,8 +92,8 @@ def main():
         streams=video['streams']; assert len(streams)==1 and streams[0]['codec_name']=='h264'
         assert streams[0]['pix_fmt']=='yuv420p'
         assert streams[0]['r_frame_rate']=='30/1'
-        assert (streams[0]['width'],streams[0]['height']) in ((3840,2160),(2560,1440))
-        assert abs(float(video['format']['duration'])-12)<.05
+        assert (streams[0]['width'],streams[0]['height']) in ((3840,2160),(2560,1440),(1920,1080))
+        assert abs(float(video['format']['duration'])-16)<.05
     report={'omarchy':subprocess.check_output(['omarchy','version'],text=True).strip(),'generated_files':generated,'contrast_checks':checks,'video':video}
     (ROOT/'qa/validation.json').write_text(json.dumps(report,indent=2)+'\n')
     print(f'PASS: {len(checks)} contrast checks; {len(generated)} generated/config files; video={bool(video)}')

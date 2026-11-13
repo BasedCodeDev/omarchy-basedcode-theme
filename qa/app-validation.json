@@ -1,20 +1,20 @@
 {
-  "aether_highlight_contrast": {
-    "Comment": 6.87,
-    "DiagnosticError": 10.37,
-    "DiagnosticHint": 9.68,
-    "DiagnosticInfo": 9.28,
-    "DiagnosticWarn": 10.59,
-    "DiffAdd": 11.25,
-    "DiffChange": 18.17,
-    "DiffDelete": 12.02,
-    "IncSearch": 8.96,
-    "Normal": 18.92,
-    "Search": 7.71,
-    "Visual": 12.64
-  },
   "foot": "pass",
   "ghostty": "pass",
   "hyprland_lua": "pass",
-  "neovim_lua": "pass"
+  "neovim_lua": "pass",
+  "aether_highlight_contrast": {
+    "DiagnosticWarn": 8.83,
+    "DiagnosticInfo": 7.74,
+    "DiagnosticHint": 8.07,
+    "Normal": 15.78,
+    "Comment": 7.28,
+    "Visual": 8.96,
+    "Search": 6.52,
+    "IncSearch": 7.48,
+    "DiffAdd": 9.11,
+    "DiffDelete": 9.82,
+    "DiffChange": 14.74,
+    "DiagnosticError": 8.65
+  }
 }

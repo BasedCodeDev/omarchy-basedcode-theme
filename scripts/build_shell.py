@@ -22,9 +22,9 @@ for section in ('popups','tooltip','notifications'):
 for section in ('launcher','menu'):
     write(section, {**base,'scrim':c['background'],'scrim-alpha':0.6,
         'selected-background':c['selection'],'selected-background-alpha':1.0,
-        'selected-text':c['foreground'],'selected-border':c['accent'],'selected-border-alpha':1.0})
+        'selected-text':c['selection_foreground'],'selected-border':c['accent'],'selected-border-alpha':1.0})
 controls = {}
-for state,fill,border in [('normal',0.04,'#A995B2'),('hover-cursor',0.08,c['accent']),('focus',0.08,c['accent']),('selected',0.15,c['accent'])]:
+for state,fill,border in [('normal',0.04,c['muted']),('hover-cursor',0.08,c['accent']),('focus',0.08,c['accent']),('selected',0.15,c['accent'])]:
     controls.update({f'{state}-color':c['foreground'],f'{state}-fill-alpha':fill,
         f'{state}-border':border,f'{state}-border-width':1,f'{state}-border-alpha':1.0})
 controls.update({'pressed-fill-alpha':0.22,'selection-fill-alpha':0.35})

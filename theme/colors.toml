@@ -1,21 +1,20 @@
-# BasedCode / Brand Bible v2.4 — official colours plus documented functional shades.
+# BasedCode Light: brighter purple companion to the Carbon theme.
+# Native dark mode gives third-party applications light text on dark surfaces.
 mode = "dark"
-accent = "#B568C2"
-selection = "#472458"
-selection_background = "#472458"
+accent = "#D7A4E2"
+selection = "#663674"
+selection_background = "#663674"
 selection_foreground = "#FFFFFF"
-muted = "#A995B2"
-
-background = "#121014"
-dark_background = "#100D12"
-darker_background = "#0C0A0E"
-lighter_background = "#2D1540"
+muted = "#C1A7CE"
+background = "#1F241F"
+dark_background = "#191D19"
+darker_background = "#141814"
+lighter_background = "#272D27"
 foreground = "#FFFFFF"
-dark_foreground = "#A995B2"
+dark_foreground = "#C1A7CE"
 light_foreground = "#D7C9DD"
 bright_foreground = "#FFFFFF"
-
-# Restrained functional exceptions: errors, diffs, warnings and syntax.
+# Restrained semantic colours: code, diagnostics and diffs.
 red = "#DF929E"
 yellow = "#D8BF8C"
 orange = "#DCA78C"
@@ -30,6 +29,5 @@ bright_green = "#C1D5B8"
 bright_cyan = "#BED8DE"
 bright_blue = "#CCD0EB"
 bright_magenta = "#DEB0E5"
-
-hyprland_active_border = "#B568C2"
-hyprland_inactive_border = "#60486A"
+hyprland_active_border = "#D7A4E2"
+hyprland_inactive_border = "#896397"

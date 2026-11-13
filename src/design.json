@@ -1,5 +1,5 @@
 {
-  "name": "BasedCode",
+  "name": "BasedCode Light",
   "brand_source": "https://brand.basedcode.dev/",
   "brand_version": "2.4",
   "official": {
@@ -16,12 +16,19 @@
     "quiet": "#A995B2"
   },
   "wallpaper": {
-    "width": 3840,
-    "height": 2160,
+    "width": 1920,
+    "height": 1080,
+    "still_width": 3840,
+    "still_height": 2160,
     "fps": 30,
-    "seconds": 12,
-    "seed": 240
+    "seconds": 16,
+    "seed": 24408,
+    "angle": 285,
+    "start": "#895395",
+    "end": "#30203E",
+    "start_stop": 0,
+    "end_stop": 1
   },
   "font_family": "JetBrains Mono",
-  "notes": "Official Core swatch wins over incidental CSS colours. Semantic colours in colors.toml are functional additions, not brand colours."
+  "notes": "Approved purple field from nodes.html CSS, without its shader, nodes or text. Medium-purple application surfaces and light text follow selected mockup C. Light denotes the brighter purple sibling, not light application mode. Wallpaper revised to match the supplied streaming-scene screenshot: softer plum left, warmer luminous purple right; screenshot is a visual reference, not bundled artwork. Main window background subsequently matched to the reference top bar: #1F241F, with charcoal panels and purple accents. Right-hand wallpaper highlight reduced from #995DA5 to #895395 following desktop review."
 }

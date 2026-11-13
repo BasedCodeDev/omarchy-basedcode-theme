@@ -1,14 +1,15 @@
 {
   "wordmark": false,
+  "nodes": false,
   "still_size": [
     3840,
     2160
   ],
   "video_size": [
-    3840,
-    2160
+    1920,
+    1080
   ],
   "fps": 30,
-  "seconds": 12,
-  "seed": 240
+  "seconds": 16,
+  "seed": 24408
 }
