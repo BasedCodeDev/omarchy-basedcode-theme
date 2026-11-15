@@ -137,3 +137,53 @@ Use the new URLs explicitly: redirects do not change the theme slug derived from
 Historical rollback records remain untouched. The updated rollback script maps pre-rename
 `basedcode` records to `basedcode-dark` and `basedcode-light` records to `basedcode`.
 New records include versioned identity metadata and use the current names.
+
+## Herdr integration
+
+Herdr can use a dedicated Basedcode palette whenever this Omarchy theme is selected.
+After installing the theme, run this explicit, optional integration step from the source
+checkout (Python 3.11+, Herdr and Omarchy required):
+
+```sh
+python scripts/build_herdr.py
+python scripts/herdr_integration.py install
+```
+
+Run it from each theme checkout when installing both siblings. Both installers maintain
+one shared, versioned user hook. The installer backs up existing files, installs the
+colour-only `herdr.toml` into the corresponding installed theme, and applies the active
+palette immediately. A normal Git theme installation includes the palette but does not
+install executable hooks automatically. The source archive includes the installer.
+
+Selecting `basedcode` or `basedcode-dark` applies that theme's custom Herdr colours.
+Selecting any other theme restores the appearance settings saved when entering the
+Basedcode themes, including terminal-following behaviour. The transparent tab bar,
+shortcuts, layouts, session state and unrelated configuration are preserved. Functional
+status colours follow the Omarchy palette; these are usability exceptions to the brand's
+purple-and-white decorative palette. Terminal font and transparency remain user-controlled.
+
+The hook validates candidate configurations before replacing them and reloads a running
+server without terminating sessions. It does not start a stopped server or contact remote
+machines. Install this integration separately on each machine where it is wanted.
+If you edit managed theme settings while it is active, it stops with a diagnostic rather
+than overwriting those edits. The saved and last-applied settings are recorded in
+`~/.local/state/omarchy/basedcode-herdr/active.json`; restore the last-applied settings
+before retrying, or manually reconcile the saved settings before removing that record.
+
+Remove the integration and restore the saved appearance with:
+
+```sh
+python ~/.local/share/basedcode-herdr/integration.py uninstall
+```
+
+Timestamped backups remain under `~/.local/state/omarchy/basedcode-herdr/`.
+Uninstallation leaves colour-only theme data installed. Full config backups are available
+for manual recovery, but restoring a whole backup would also revert subsequent unrelated edits.
+
+Validate the palettes and switching behaviour without changing the live desktop:
+
+```sh
+python scripts/build_herdr.py
+python scripts/check_herdr.py
+python scripts/package.py
+```

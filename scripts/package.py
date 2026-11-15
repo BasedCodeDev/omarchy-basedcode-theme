@@ -2,6 +2,7 @@
 """Build reproducible archives from explicit public inputs; never include local QA."""
 import gzip,hashlib,json,pathlib,shutil,subprocess,tarfile
 ROOT=pathlib.Path(__file__).resolve().parents[1]
+subprocess.run(['python3', str(ROOT/'scripts/build_herdr.py')], check=True)
 # Keep the repository root directly installable by Omarchy. Edit theme/ and
 # regenerate these tracked copies with this script; Git deduplicates their blobs.
 for source in (ROOT/'theme').iterdir():
@@ -12,6 +13,7 @@ release=ROOT/'build/release/basedcode'
 if release.exists(): shutil.rmtree(release)
 shutil.copytree(ROOT/'theme',release)
 runtime_readme='''# Basedcode for Omarchy\n\nCharcoal Basedcode Dark theme with purple accents and light text and native dark application mode; tested on Omarchy 4.5.0-3.\n\nExtract this basedcode directory into ~/.config/omarchy/themes/ (back up an existing copy first), then run:\n\n    omarchy theme set basedcode\n\nRequires Yaru-purple icons. JetBrainsMono Nerd Font is recommended. Animation uses Omarchy native video wallpaper support.\n\nChoose the matching still or animation through the background picker, or run:\n\n    omarchy theme bg set ~/.config/omarchy/themes/basedcode/backgrounds/02-basedcode-still.png\n    omarchy theme bg set ~/.config/omarchy/themes/basedcode/backgrounds/01-basedcode-motion.mp4\n\nSwitch back through the theme picker. Before installation, record your existing theme and wallpaper if you need exact restoration.\n\nSource archive contains the renderer, scripts, full documentation and validation results. No fonts or icon files are bundled. BasedCode brand rights are separate from the implementation licence.\n'''
+runtime_readme += '\nHerdr: herdr.toml provides the matching palette. To enable automatic switching, use scripts/herdr_integration.py install from the source archive; see its README. Theme installation alone does not install executable hooks.\n'
 (release/'README.md').write_text(runtime_readme)
 for name in ('LICENSE','BRAND-RIGHTS.md','THIRD-PARTY-NOTICES.md'):
     shutil.copy2(ROOT/name,release/name)
